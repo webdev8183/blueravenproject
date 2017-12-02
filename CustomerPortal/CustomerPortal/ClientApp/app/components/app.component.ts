@@ -1,9 +1,9 @@
 // ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 import { Component, ViewEncapsulation, OnInit, OnDestroy, ViewChildren, AfterViewInit, QueryList, ElementRef } from "@angular/core";
@@ -21,6 +21,7 @@ import { AuthService } from '../services/auth.service';
 import { ConfigurationService } from '../services/configuration.service';
 import { Permission } from '../models/permission.model';
 import { LoginComponent } from "../components/login/login.component";
+import { CustomerService } from '../services/customer-service';
 
 var alertify: any = require('../assets/scripts/alertify.js');
 

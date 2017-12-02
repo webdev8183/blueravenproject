@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using DAL.Models;
@@ -51,12 +51,13 @@ namespace DAL
 
                 const string adminRoleName = "administrator";
                 const string userRoleName = "user";
+                
 
                 await ensureRoleAsync(adminRoleName, "Default administrator", ApplicationPermissions.GetAllPermissionValues());
                 await ensureRoleAsync(userRoleName, "Default user", new string[] { });
 
-                await createUserAsync("admin", "tempP@ss123", "Inbuilt Administrator", "admin@ebenmonney.com", "+1 (123) 000-0000", new string[] { adminRoleName });
-                await createUserAsync("user", "tempP@ss123", "Inbuilt Standard User", "user@ebenmonney.com", "+1 (123) 000-0001", new string[] { userRoleName });
+                await createUserAsync("admin", "tempP@ss123", "Inbuilt Administrator", "montyedwards@southfloridacoder.com", "+1 (123) 000-0000", new string[] { adminRoleName });
+                await createUserAsync("user", "tempP@ss123", "Inbuilt Standard User", "montyedwards@southfloridacoder.com", "+1 (123) 000-0001", new string[] { userRoleName });
 
                 _logger.LogInformation("Inbuilt account generation completed");
             }
@@ -69,8 +70,8 @@ namespace DAL
 
                 Customer cust_1 = new Customer
                 {
-                    Name = "Ebenezer Monney",
-                    Email = "contact@ebenmonney.com",
+                    Name = "Monty Edwards",
+                    Email = "montyedwards@southfloridacoder.com",
                     Gender = Gender.Male,
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
@@ -78,9 +79,9 @@ namespace DAL
 
                 Customer cust_2 = new Customer
                 {
-                    Name = "Itachi Uchiha",
+                    Name = "test user ",
                     Email = "uchiha@narutoverse.com",
-                    PhoneNumber = "+81123456789",
+                    Phone = "+81123456789",
                     Address = "Some fictional Address, Street 123, Konoha",
                     City = "Konoha",
                     Gender = Gender.Male,
@@ -92,7 +93,7 @@ namespace DAL
                 {
                     Name = "John Doe",
                     Email = "johndoe@anonymous.com",
-                    PhoneNumber = "+18585858",
+                    Phone = "+18585858",
                     Address = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
                     Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet",
                     City = "Lorem Ipsum",
@@ -105,7 +106,7 @@ namespace DAL
                 {
                     Name = "Jane Doe",
                     Email = "Janedoe@anonymous.com",
-                    PhoneNumber = "+18585858",
+                    Phone = "+18585858",
                     Address = @"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Integer nec odio.
                     Praesent libero. Sed cursus ante dapibus diam. Sed nisi. Nulla quis sem at nibh elementum imperdiet",
                     City = "Lorem Ipsum",
@@ -118,7 +119,7 @@ namespace DAL
 
                 ProductCategory prodCat_1 = new ProductCategory
                 {
-                    Name = "None",
+                    Name = "GoogleJob",
                     Description = "Default category. Products that have not been assigned a category",
                     DateCreated = DateTime.UtcNow,
                     DateModified = DateTime.UtcNow
@@ -128,8 +129,8 @@ namespace DAL
 
                 Product prod_1 = new Product
                 {
-                    Name = "BMW M6",
-                    Description = "Yet another masterpiece from the world's best car manufacturer",
+                    Name = "Google",
+                    Description = "Google Virtual Tour",
                     BuyingPrice = 109775,
                     SellingPrice = 114234,
                     UnitsInStock = 12,

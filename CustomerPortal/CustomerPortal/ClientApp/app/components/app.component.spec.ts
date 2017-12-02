@@ -23,7 +23,7 @@ import { AppTranslationService, TranslateLanguageLoader } from '../services/app-
 import { ConfigurationService } from '../services/configuration.service';
 import { AlertService } from '../services/alert.service';
 import { LocalStoreManager } from '../services/local-store-manager.service';
-import { EndpointFactory } from '../services/endpoint-factory.service';
+//import { EndPointFactory } from '../services/endpoint-factory.service';
 import { NotificationService } from '../services/notification.service';
 import { NotificationEndpoint } from '../services/notification-endpoint.service';
 import { AccountService } from '../services/account.service';
@@ -64,7 +64,7 @@ describe('AppComponent', () => {
                 AccountService,
                 AccountEndpoint,
                 LocalStoreManager,
-                EndpointFactory
+               // EndpointFactory having problems loading this for some reason I cannot determine.. 
             ]
         }).compileComponents();
     }));

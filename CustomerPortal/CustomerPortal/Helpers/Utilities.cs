@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using AspNet.Security.OpenIdConnect.Primitives;
@@ -61,7 +61,7 @@ namespace CustomerPortal.Helpers
             return user.FindFirst(OpenIdConnectConstants.Claims.Subject)?.Value?.Trim();
         }
 
-
+        
 
         public static string[] GetRoles(ClaimsPrincipal identity)
         {

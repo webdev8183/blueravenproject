@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using DAL.Models;
@@ -47,7 +47,7 @@ namespace DAL
             builder.Entity<Customer>().Property(c => c.Name).IsRequired().HasMaxLength(100);
             builder.Entity<Customer>().HasIndex(c => c.Name);
             builder.Entity<Customer>().Property(c => c.Email).HasMaxLength(100);
-            builder.Entity<Customer>().Property(c => c.PhoneNumber).IsUnicode(false).HasMaxLength(30);
+            builder.Entity<Customer>().Property(c => c.Phone).IsUnicode(false).HasMaxLength(30);
             builder.Entity<Customer>().Property(c => c.City).HasMaxLength(50);
             builder.Entity<Customer>().ToTable($"App{nameof(this.Customers)}");
 

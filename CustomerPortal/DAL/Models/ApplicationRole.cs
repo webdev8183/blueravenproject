@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using DAL.Models.Interfaces;
@@ -72,11 +72,11 @@ namespace DAL.Models
         /// <summary>
         /// Navigation property for the users in this role.
         /// </summary>
-        public virtual ICollection<IdentityUserRole<string>> Users { get; set; }
+        public virtual List<IdentityUserRole<string>> Users { get; set; }
 
         /// <summary>
         /// Navigation property for claims in this role.
         /// </summary>
-        public virtual ICollection<IdentityRoleClaim<string>> Claims { get; set; }
+        public virtual List<IdentityRoleClaim<string>> Claims { get; set; }
     }
 }

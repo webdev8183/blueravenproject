@@ -42,7 +42,7 @@
       "UserProfile": "User Profile",
       "UserPreferences": "User Preferences",
       "UserDepartments": "User Departments",
-      "UsersManagements": "Users Managements",
+      "UsersManagements": "Users Management",
       "RolesManagement": "Roles Management"
     }
   },
@@ -97,6 +97,8 @@
       "Roles": "Roles",
       "PhoneNumber": "Phone Number"
     },
+  
+    
     "editor": {
       "JobTitle": "Job Title: ",
       "UserName": "User Name:",

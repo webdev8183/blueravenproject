@@ -21,6 +21,7 @@
                         <li routerLinkActive="active" *ngIf="canViewCustomers"><a routerLink="/customers">{{'mainMenu.Customers' | translate}}</a></li>
                         <li routerLinkActive="active" *ngIf="canViewProducts"><a routerLink="/products">{{'mainMenu.Products' | translate}}</a></li>
                         <li routerLinkActive="active" *ngIf="canViewOrders"><a routerLink="/orders">{{'mainMenu.Orders' | translate}}</a></li>
+                        <!--<li routerLinkActive="active" *ngIf="canManageCustomers"><a routherLink="/addcustomers">{{'mainMenu.AddCustomers'|translate}}</a></li>-->
                         <li routerLinkActive="active"><a routerLink="/about">{{'mainMenu.About' | translate}}</a></li>
                     </ul>
                     <ul class="app-component nav navbar-nav nav-pills navBarPadding navbar-right">
@@ -62,7 +63,7 @@
                     Loaded!
                 </h1>
                 <p>
-                    QUICK APPLICATION SYSTEM - <span class="appName" style="font-style:italic">quick</span><span class="appName">App</span> &copy; <a href="http://www.ebenmonney.com">WWW.EBENMONNEY.COM</a>
+                    CustomerPortal - <span class="appName" style="font-style:italic">quick</span><span class="appName">App</span> &copy; <a href="http://www.blueravenstudios.com">WWW.BLUERAVENSTUDIOS.COM</a>
                 </p>
 
             </div>
@@ -78,8 +79,8 @@
                     <footer>
                         <div class="app-component vcenter_text center-block">
                             <p class="text-center text-muted">
-                                <span class="appName" style="font-style:italic">quick</span><span class="appName">App</span> &copy; {{getYear()}}
-                                <a href="http://www.ebenmonney.com" target="_blank">www.ebenmonney.com</a>
+                                <span class="appName" style="font-style:italic">Portal</span><span class="appName">App</span> &copy; {{getYear()}}
+                                <a href="http://www.blueravenstudios.com" target="_blank">www.blueravenstudios.com</a>
                                 <!--<span class="small display-none">- Powered by <a href="http://ebenmonney.com/quickapp" target="_blank"><span class="appName" style="font-style:italic">quick</span><span class="appName">App</span></a></span>-->
                             </p>
                         </div>

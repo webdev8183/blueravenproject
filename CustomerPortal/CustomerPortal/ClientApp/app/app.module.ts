@@ -1,9 +1,9 @@
 // ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 import { NgModule, ErrorHandler } from "@angular/core";
@@ -32,6 +32,7 @@ import { ConfigurationService } from './services/configuration.service';
 import { AlertService } from './services/alert.service';
 import { LocalStoreManager } from './services/local-store-manager.service';
 import { EndpointFactory } from './services/endpoint-factory.service';
+import { CustomerEndpoint } from './services/customer-endpoint.service'
 import { NotificationService } from './services/notification.service';
 import { NotificationEndpoint } from './services/notification-endpoint.service';
 import { AccountService } from './services/account.service';
@@ -65,7 +66,11 @@ import { UserInfoComponent } from "./components/controls/user-info.component";
 import { UserPreferencesComponent } from "./components/controls/user-preferences.component";
 import { UsersManagementComponent } from "./components/controls/users-management.component";
 import { RolesManagementComponent } from "./components/controls/roles-management.component";
+//import { CustomerEditorComponent} from "./components/controls/customer-editor.component";
 import { RoleEditorComponent } from "./components/controls/role-editor.component";
+import { CustomerService } from "./services/customer-service";
+//import { CustomersManagementComponent } from "./components/controls/customers-management.component";
+
 
 
 
@@ -114,7 +119,8 @@ import { RoleEditorComponent } from "./components/controls/role-editor.component
         BootstrapToggleDirective,
         BootstrapSelectDirective,
         BootstrapDatepickerDirective,
-        GroupByPipe
+        GroupByPipe,
+        CustomersManagementComponent
     ],
     providers: [
         { provide: 'BASE_URL', useFactory: getBaseUrl },
@@ -128,7 +134,11 @@ import { RoleEditorComponent } from "./components/controls/role-editor.component
         AccountService,
         AccountEndpoint,
         LocalStoreManager,
-        EndpointFactory
+        EndpointFactory,
+        CustomerService
+       
+        
+
     ],
     bootstrap: [AppComponent]
 })

@@ -71,10 +71,34 @@
   </Target>
 
   <ItemGroup>
+    <Compile Remove="Controllers\backupCustomerController.cs" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Remove="ClientApp\app\components\customers\customer.ts" />
+    <None Remove="ClientApp\app\components\products\product-data.ts" />
+    <None Remove="ClientApp\app\components\products\product.service.ts" />
+    <None Remove="ClientApp\app\components\products\Product.ts" />
+    <None Remove="ClientApp\app\models\customer-edit.model.ts" />
+    <None Remove="ClientApp\app\models\customer.model.ts" />
+    <None Remove="ClientApp\app\services\customer-endpoint.service.ts" />
+  </ItemGroup>
+
+  <ItemGroup>
     <Content Include="ClientApp\app\assets\locale\ar.json" />
     <Content Include="ClientApp\app\assets\locale\de.json" />
     <Content Include="ClientApp\app\assets\locale\ko.json" />
     <Content Include="ClientApp\app\assets\locale\en.json" />
     <Content Include="ClientApp\app\assets\locale\fr.json" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <TypeScriptCompile Include="ClientApp\app\components\customers\customer.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\product-data.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\product.service.ts" />
+    <TypeScriptCompile Include="ClientApp\app\components\products\Product.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\customer-edit.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\models\customer.model.ts" />
+    <TypeScriptCompile Include="ClientApp\app\services\customer-endpoint.service.ts" />
   </ItemGroup>
 </Project>

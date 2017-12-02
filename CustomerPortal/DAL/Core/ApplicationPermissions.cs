@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using System;
@@ -29,8 +29,11 @@ namespace DAL.Core
         public static ApplicationPermission ManageRoles = new ApplicationPermission("Manage Roles", "roles.manage", RolesPermissionGroupName, "Permission to create, delete and modify roles");
         public static ApplicationPermission AssignRoles = new ApplicationPermission("Assign Roles", "roles.assign", RolesPermissionGroupName, "Permission to assign roles to users");
 
+        public const string StaffPermissionGroupName = "Staff Permissions";
+        public static ApplicationPermission ViewCustomers = new ApplicationPermission("View Customers", "customers.view", StaffPermissionGroupName, "Permission to view customers");
+        public static ApplicationPermission ManageCustomers = new ApplicationPermission("Manage Customers", "customers.manage", StaffPermissionGroupName, "Permission to manage customers");
 
-
+        public static string ManageJobs { get; set; }
 
         static ApplicationPermissions()
         {
@@ -38,6 +41,8 @@ namespace DAL.Core
             {
                 ViewUsers,
                 ManageUsers,
+                ViewCustomers,
+                ManageCustomers,
 
                 ViewRoles,
                 ManageRoles,
@@ -64,7 +69,7 @@ namespace DAL.Core
 
         public static string[] GetAdministrativePermissionValues()
         {
-            return new string[] { ManageUsers, ManageRoles, AssignRoles };
+            return new string[] { ManageUsers, ManageRoles, AssignRoles,ViewCustomers,ManageCustomers };
         }
     }
 
