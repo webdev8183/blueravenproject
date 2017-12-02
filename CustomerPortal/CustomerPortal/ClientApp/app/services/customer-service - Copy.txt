@@ -1,0 +1,27 @@
+﻿import { Injectable } from '@angular/core';
+import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable } from 'rxjs/Observable';
+import 'rxjs/add/observable/throw';
+import 'rxjs/add/operator/catch';
+import 'rxjs/add/operator/do';
+
+import { ICustomer } from '../components/customers/customer';
+
+@Injectable()
+export class CustomerService {
+    getCustomers: any;
+    private _customerUrl = './api/values';
+
+    constructor(private _http: HttpClient) { }
+
+    getProducts(): Observable<ICustomer[]> {
+        return this._http.get<ICustomer[]>(this._customerUrl)
+            .do(data => console.log('All: ' + JSON.stringify(data)))
+            .catch(this.handleError);
+    }
+
+    private handleError(err: HttpErrorResponse) {
+        console.error(err.message);
+        return Observable.throw(err.message);
+    }
+}

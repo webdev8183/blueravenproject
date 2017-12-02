@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using System;
@@ -27,7 +27,8 @@ namespace DAL.Core
 
         ///<summary>A claim that specifies the email of an entity</summary>
         public const string Email = "email";
-
+        ///<summary>A claim that specifies the business name of an entity</summary>
+        public const string BusinessName = "businessname";
         ///<summary>A claim that specifies the phone number of an entity</summary>
         public const string Phone = "phone";
 

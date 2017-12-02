@@ -1,24 +1,25 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 export type PermissionNames =
-    "View Users" | "Manage Users" |
+    "View Users" | "Manage Users" |"Manage Customers"|"View Customers"|
     "View Roles" | "Manage Roles" | "Assign Roles";
 
 export type PermissionValues =
-    "users.view" | "users.manage" |
+    "users.view" | "users.manage" |"customers.view"|"customers.manage"|
     "roles.view" | "roles.manage" | "roles.assign";
 
 export class Permission {
 
     public static readonly viewUsersPermission: PermissionValues = "users.view";
     public static readonly manageUsersPermission: PermissionValues = "users.manage";
-
+    public static readonly manageCustomersPermission: PermissionValues = "customers.manage";
+    public static readonly viewCustomersPermission: PermissionValues = "customers.view";
     public static readonly viewRolesPermission: PermissionValues = "roles.view";
     public static readonly manageRolesPermission: PermissionValues = "roles.manage";
     public static readonly assignRolesPermission: PermissionValues = "roles.assign";

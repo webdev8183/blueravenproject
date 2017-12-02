@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using System;
@@ -39,5 +39,14 @@ namespace CustomerPortal.Policies
 
         /// <summary>Policy to allow adding, removing and updating roles.</summary>
         public const string ManageRolesPolicy = "Manage Roles";
+
+        /// <summary>Policy to allow adding, and updating customers.</summary>
+        public const string ManageCustomersPolicy = "Manage Customers";
+
+        //TODO Add Manage Jobs Policy. 
+        //public static string ManageJobsPolicy { get; internal set; }
+
+        /// <summary>Policy to allow adding, and updating jobs since I don't currently have any jobs will plug this in later..</summary>
+        // public const string ManageJobsPolicy = "Manage Jobs";
     }
 }

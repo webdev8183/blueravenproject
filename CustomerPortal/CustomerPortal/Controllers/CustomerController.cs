@@ -1,26 +1,16 @@
-﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
-// 
-// ==> Gun4Hire: contact@ebenmonney.com
-// ======================================
-
-using System;
+﻿using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using DAL;
 using CustomerPortal.ViewModels;
-using AutoMapper;
-using DAL.Models;
 using Microsoft.Extensions.Logging;
+using AutoMapper;
 using CustomerPortal.Helpers;
 
 namespace CustomerPortal.Controllers
 {
-    [Route("api/[controller]")]
     public class CustomerController : Controller
     {
         private IUnitOfWork _unitOfWork;
@@ -31,6 +21,8 @@ namespace CustomerPortal.Controllers
         {
             _unitOfWork = unitOfWork;
             _logger = logger;
+            
+
         }
 
 
@@ -38,6 +30,7 @@ namespace CustomerPortal.Controllers
         // GET: api/values
         [HttpGet]
         public IActionResult Get()
+
         {
             var allCustomers = _unitOfWork.Customers.GetAllCustomersData();
             return Ok(Mapper.Map<IEnumerable<CustomerViewModel>>(allCustomers));
@@ -61,7 +54,7 @@ namespace CustomerPortal.Controllers
 
             string message = EmailTemplates.GetTestEmail(recepientName, DateTime.UtcNow);
 
-            (bool success, string errorMsg) response = await EmailSender.SendEmailAsync(recepientName, recepientEmail, "Test Email from CustomerPortal", message);
+            (bool success, string errorMsg) response = await EmailSender.SendEmailAsync(recepientName, recepientEmail, "Test Email from RepairProject", message);
 
             if (response.success)
                 return "Success";

@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
-// 
-// ==> Gun4Hire: contact@ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
+//
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 import { NgModule } from '@angular/core';
@@ -17,10 +17,11 @@ import { OrdersComponent } from "./components/orders/orders.component";
 import { SettingsComponent } from "./components/settings/settings.component";
 import { AboutComponent } from "./components/about/about.component";
 import { NotFoundComponent } from "./components/not-found/not-found.component";
+
 import { AuthService } from './services/auth.service';
 import { AuthGuard } from './services/auth-guard.service';
 
-
+//import { CustomersDetailComponent } from "./components/customers/customers.component";
 
 @NgModule({
     imports: [
@@ -33,6 +34,7 @@ import { AuthGuard } from './services/auth-guard.service';
             { path: "settings", component: SettingsComponent, canActivate: [AuthGuard], data: { title: "Settings" } },
             { path: "about", component: AboutComponent, data: { title: "About Us" } },
             { path: "home", redirectTo: "/", pathMatch: "full" },
+
             { path: "**", component: NotFoundComponent, data: { title: "Page Not Found" } },
         ])
     ],

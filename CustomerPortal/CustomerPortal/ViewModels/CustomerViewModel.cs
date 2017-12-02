@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using FluentValidation;
@@ -25,7 +25,12 @@ namespace CustomerPortal.ViewModels
         public string Address { get; set; }
         public string City { get; set; }
         public string Gender { get; set; }
-
+        public string BusinessName { get; set;}
+        public string CustomerType { get; set; }
+        public string Description { get; set; }
+        public string Icon { get; set; }
+        public int UsersCount { get; set; }
+        public string Staff { get; set; }
         public ICollection<OrderViewModel> Orders { get; set; }
     }
 

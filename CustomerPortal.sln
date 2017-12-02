@@ -5,9 +5,14 @@ VisualStudioVersion = 15.0.27004.2009
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "src", "src", "{8C6C05E2-5AEF-4CD0-B34E-68D9DDEA3E71}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerPortal", "CustomerPortal\CustomerPortal\CustomerPortal.csproj", "{76835DF7-1440-41F2-8DA5-AA8F432A733A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "CustomerPortal", "CustomerPortal\CustomerPortal\CustomerPortal.csproj", "{76835DF7-1440-41F2-8DA5-AA8F432A733A}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DAL", "CustomerPortal\DAL\DAL.csproj", "{B96DDD8B-037B-486B-B6ED-0CBC0EF11C9A}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DAL", "CustomerPortal\DAL\DAL.csproj", "{B96DDD8B-037B-486B-B6ED-0CBC0EF11C9A}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{2A346F1E-BF73-4F5E-9596-32782C627771}"
+	ProjectSection(SolutionItems) = preProject
+		License.txt = License.txt
+	EndProjectSection
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,6 +37,6 @@ Global
 		{B96DDD8B-037B-486B-B6ED-0CBC0EF11C9A} = {8C6C05E2-5AEF-4CD0-B34E-68D9DDEA3E71}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
-		SolutionGuid = {E18AA856-9787-4ECF-A52A-855AF07ABEA2}
+		SolutionGuid = {20DC9B50-A3C5-473F-8B04-20DC461902BF}
 	EndGlobalSection
 EndGlobal

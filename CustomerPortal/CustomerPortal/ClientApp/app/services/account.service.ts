@@ -1,9 +1,9 @@
 ﻿// ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 import { Injectable } from '@angular/core';
@@ -44,7 +44,7 @@ export class AccountService {
 
     }
 
-
+    
     getUser(userId?: string) {
 
         return this.accountEndpoint.getUserEndpoint(userId)
@@ -230,5 +230,8 @@ export class AccountService {
 
     get currentUser() {
         return this.authService.currentUser;
+    }
+    get customers() {
+        return this.customers
     }
 }

@@ -1,0 +1,206 @@
+﻿import { Component, OnInit, AfterViewInit, TemplateRef, ViewChild, Input } from '@angular/core';
+import { ModalDirective } from 'ngx-bootstrap/modal';//Todo: Change back to 'ng2-bootstrap/modal' when valorsoft fixes umd module
+
+import { AlertService, DialogType, MessageSeverity } from '../../services/alert.service';
+import { AppTranslationService } from "../../services/app-translation.service";
+import { CustomerService } from "../../services/customer-service";
+import { AccountService } from "../../services/account.service";
+import { Permission } from '../../models/permission.model';
+import { Utilities } from "../../services/utilities";
+import { Customer } from '../../models/customer.model';
+
+
+
+@Component({
+    selector: 'customers-management',
+    templateUrl: './customers-management.component.html',
+    styleUrls: ['./customers-management.component.css']
+})
+export class CustomersManagementComponent implements OnInit, AfterViewInit {
+    columns: any[] = [];
+    rows: Customer[] = [];
+    rowsCache: Customer[] = [];
+    editedCustomer: Customer;
+    sourceCustomer: Customer;
+    editingCustomerName: string;
+    loadingIndicator: boolean;
+
+
+
+    @ViewChild('indexTemplate')
+    indexTemplate: TemplateRef<any>;
+
+    @ViewChild('actionsTemplate')
+    actionsTemplate: TemplateRef<any>;
+
+    @ViewChild('editorModal')
+    editorModal: ModalDirective;
+
+    @ViewChild('customerEditor')
+  //  customerEditor: customerEditor;
+
+    constructor(private alertService: AlertService, private translationService: AppTranslationService, private accountService: AccountService, private customerService: CustomerService) {
+    }
+
+
+    ngOnInit() {
+        let gT = (key: string) => this.translationService.getTranslation(key);
+        this.columns = [
+            { prop: "index", name: '#', width: 50, cellTemplate: this.indexTemplate, canAutoResize: false },
+            { prop: 'name', name: gT('customers.name'), width: 180 },
+            { prop: 'description', name: gT('customers.description'), width: 350 },
+            { prop: 'usersCount', name: gT('customers.users'), width: 30 }
+        ];
+
+        if (this.canManageCustomers)
+            this.columns.push({ name: '', width: 130, cellTemplate: this.actionsTemplate, resizeable: false, canAutoResize: false, sortable: false, draggable: false });
+
+        this.loadData();
+    }
+
+
+
+
+
+    ngAfterViewInit() {
+
+        this.customerEditor.changesSavedCallback = () => {
+            this.addNewCustomerToList();
+            this.editorModal.hide();
+        };
+
+        this.customerEditor.changesCancelledCallback = () => {
+            this.editedCustomer = null;
+            this.sourceCustomer = null;
+            this.editorModal.hide();
+        };
+    }
+
+
+    addNewCustomerToList() {
+        if (this.sourceCustomer) {
+            Object.assign(this.sourceCustomer, this.editedCustomer);
+            this.editedCustomer = null;
+            this.sourceCustomer = null;
+        }
+        else {
+            let customer = new Customer();
+            Object.assign(customer, this.editedCustomer);
+            this.editedCustomer = null;
+
+            let maxIndex = 0;
+            for (let u of this.rowsCache) {
+                if ((<any>u).index > maxIndex)
+                    maxIndex = (<any>u).index;
+            }
+
+            (<any>customer).index = maxIndex + 1;
+
+            this.rowsCache.splice(0, 0, customer);
+            this.rows.splice(0, 0, customer);
+        }
+    }
+
+
+
+
+    loadData() {
+        this.alertService.startLoadingMessage();
+        this.loadingIndicator = true;
+
+        this.customerService.getCustomers()
+            .subscribe(customers => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                customers.forEach((customer, index, customers) => {
+                    (<any>customer).index = index + 1;
+                });
+
+
+                this.rowsCache = [...customers];
+                this.rows = customers;
+            },
+            error => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                this.alertService.showStickyMessage("Load Error", `Unable to retrieve customers from the server.\r\nErrors: "${Utilities.getHttpResponseMessage(error)}"`,
+                    MessageSeverity.error, error);
+            });
+    }
+
+
+    onSearchChanged(value: string) {
+        if (value) {
+            value = value.toLowerCase();
+
+            let filteredRows = this.rowsCache.filter(r => {
+                let isChosen = !value
+                    || r.name.toLowerCase().indexOf(value) !== -1
+                    || r.description && r.description.toLowerCase().indexOf(value) !== -1;
+
+                return isChosen;
+            });
+
+            this.rows = filteredRows;
+        }
+        else {
+            this.rows = [...this.rowsCache];
+        }
+    }
+
+    onEditorModalHidden() {
+        this.editingCustomerName = null;
+        this.customerEditor.resetForm(true);
+    }
+
+
+    newCustomer() {
+        this.editingCustomerName = null;
+        this.sourceCustomer = null;
+        this.editedCustomer = this.customerEditor.newCustomer();
+        this.editorModal.show();
+    }
+
+
+    editCustomer(customer: Customer) {
+        this.editingCustomerName = customer.name;
+        this.sourceCustomer = customer;
+        this.editedCustomer = this.customerEditor.editCustomer(customer);
+        this.editorModal.show();
+    }
+
+    deleteCustomer(row: Customer) {
+        this.alertService.showDialog('Are you sure you want to delete the \"' + row.name + '\" customer?', DialogType.confirm, () => this.deleteCustomerHelper(row));
+    }
+
+
+    deleteCustomerHelper(row: Customer) {
+
+        this.alertService.startLoadingMessage("Deleting...");
+        this.loadingIndicator = true;
+
+        this.customerService.deleteCustomer(row)
+            .subscribe(results => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                this.rowsCache = this.rowsCache.filter(item => item !== row)
+                this.rows = this.rows.filter(item => item !== row)
+            },
+            error => {
+                this.alertService.stopLoadingMessage();
+                this.loadingIndicator = false;
+
+                this.alertService.showStickyMessage("Delete Error", `An error occured whilst deleting the customer.\r\nError: "${Utilities.getHttpResponseMessage(error)}"`,
+                    MessageSeverity.error, error);
+            });
+    }
+
+
+    get canManageCustomers() {
+        return this.accountService.userHasPermission(Permission.manageRolesPermission); //Todo: Consider creating separate permission for customers
+    }
+
+}

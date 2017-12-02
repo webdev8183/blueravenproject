@@ -1,9 +1,9 @@
 // ======================================
-// Author: Ebenezer Monney
-// Email:  info@ebenmonney.com
-// Copyright (c) 2017 www.ebenmonney.com
+// Author: Monty Edwards
+// Email:  montyedwards@southfloridacoder.com
+// Copyright (c) 2017 www.southfloridacoder.com
 // 
-// ==> Gun4Hire: contact@ebenmonney.com
+// ==> Gun4Hire: montyedwards@southfloridacoder.com
 // ======================================
 
 using System;
@@ -120,6 +120,16 @@ namespace CustomerPortal
             //{
             //    opts.SerializerSettings.ContractResolver = new CamelCasePropertyNamesContractResolver();
             //});
+            //services.AddSwaggerGen(o =>
+            //{
+            //    o.AddSecurityDefinition("BearerAuth", new Swashbuckle.Swagger.Model.ApiKeyScheme
+            //    {
+            //        Name = "Authorization",
+            //        Description = "Login with your bearer authentication token. e.g. Bearer <auth-token>",
+            //        In = "header",
+            //        Type = "apiKey"
+            //    });
+            //});
 
 
 
@@ -165,6 +175,13 @@ namespace CustomerPortal
                 options.AddPolicy(AuthPolicies.AssignRolesPolicy, policy => policy.Requirements.Add(new AssignRolesRequirement()));
 
                 options.AddPolicy(AuthPolicies.ManageRolesPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageRoles));
+
+                // TODO Add Manage Jobs policy here.. 
+                //options.AddPolicy(AuthPolicies.ManageJobsPolicy, policy => policy.Requirements.Add(new ManageJobsRequirement()));
+
+                options.AddPolicy(AuthPolicies.ManageCustomersPolicy, policy => policy.RequireClaim(CustomClaimTypes.Permission, AppPermissions.ManageCustomers));
+                options.AddPolicy(AuthPolicies.ManageCustomersPolicy, policy => policy.Requirements.Add(new ManageCustomersRequirement()));
+
             });
 
             Mapper.Initialize(cfg =>
@@ -182,9 +199,10 @@ namespace CustomerPortal
             services.AddSingleton<IAuthorizationHandler, ManageUserByIdHandler>();
             services.AddSingleton<IAuthorizationHandler, ViewRoleByNameHandler>();
             services.AddSingleton<IAuthorizationHandler, AssignRolesHandler>();
-
+            services.AddSingleton<IAuthorizationHandler, ManageCustomersHandler>();
+           // services.AddSingleton<IAuthorizationHandler, >
             // DB Creation and Seeding
-            services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
+           services.AddTransient<IDatabaseInitializer, DatabaseInitializer>();
         }
 
 
@@ -253,6 +271,9 @@ namespace CustomerPortal
                 routes.MapRoute(
                     name: "default",
                     template: "{controller=Home}/{action=Index}/{id?}");
+                //routes.MapRoute(
+                //    name: "customer-route",
+                //    template: "{controller=Customer}/{action=Get}/{id?}");
 
                 routes.MapSpaFallbackRoute(
                     name: "spa-fallback",
